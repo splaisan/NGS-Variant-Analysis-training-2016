@@ -1,5 +1,5 @@
-## Hands-on introduction to NGS variant analysis (2016-session)
-Adapted session for a one-day training
+Hands-on introduction to NGS variant analysis (2016-session)
+## Adapted session for a one-day training
 ==========
 
 Code adapted from the 2015 sessions.
