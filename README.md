@@ -1,4 +1,4 @@
-Hands-on introduction to NGS variant analysis (2016-session)
+# Hands-on introduction to NGS variant analysis (2016-session)
 ## Adapted session for a one-day training
 ==========
 
