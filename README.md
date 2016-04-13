@@ -9,7 +9,7 @@ The code posted here will be maintained and might be different from that used du
 This repo presents two folders for 
 
 * [scripts](scripts): code relative to the unix command-line manipulation of the reads (QC, mapping, post-processing, ...)
-* [R-scripts](R-scripts):  R/bioconductor code.
+* [R-scripts](R-scripts): R/bioconductor code (to be added).
 
 <h4>Please send comments and feedback to <a href="mailto:bits@vib.be">bits@vib.be</a></h4>
 
