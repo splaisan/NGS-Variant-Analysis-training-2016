@@ -6,10 +6,8 @@ Full information about the NGS-Variant hands-on training can be found on our <a 
 
 The code posted here will be maintained and might be different from that used during the training.
 
-This repo presents two folders for 
-
 * [scripts](scripts): code relative to the unix command-line manipulation of the reads (QC, mapping, post-processing, ...)
-* [R-scripts](R-scripts): R/bioconductor code (to be added).
+* other pieces of code are presented in the Wiki pages and meant to be copied and pasted in the terminal rather than stored as scripts.
 
 <h4>Please send comments and feedback to <a href="mailto:bits@vib.be">bits@vib.be</a></h4>
 
