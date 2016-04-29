@@ -23,5 +23,4 @@ for fq in ${infolder}/${inprefix}*.fq.gz; do
 	echo "analysing ${fq}"
 	# perform QC test using 1 thread and zip results
 	fastqc -t 1 -o ${infolder}/${outfolder} --noextract ${fq}
-
 done
