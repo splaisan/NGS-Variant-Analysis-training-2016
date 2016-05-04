@@ -4,7 +4,8 @@ Adapted session for a one-day training
 
 Full information about the NGS-Variant hands-on training can be found on our <a href="http://wiki.bits.vib.be" target="_blank">BITS WIKI</a> in the dedicated pages starting at <a href="http://wiki.bits.vib.be/index.php/Hands-on_introduction_to_NGS_variant_analysis-2016" target="_blank">Hands-on_introduction_to_NGS_variant_analysis-2016</a>
 
-Executables used to develope the training are foem most present as one time downloads on our file server [http://data.bits.vib.be/pub/trainingen/NGSVAR2016/installers/](http://data.bits.vib.be/pub/trainingen/NGSVAR2016/installers/), please check for more recent versions at the time you install these resources.
+Installation packages for executables used to develop this training are documented in two text files or stored as archives on our file server [NGSVAR2016-installers](http://data.bits.vib.be/pub/trainingen/NGSVAR2016/installers/).
+Please check for more recent versions at the time you install these resources.
 
 The code posted here will be maintained and might be different from that used during the training.
 
