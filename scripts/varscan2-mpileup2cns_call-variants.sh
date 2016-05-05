@@ -32,14 +32,14 @@ fi
 
 # we call from the full mapping results for chr21
 # calling from the low coverage training data would not give confident calls
-infolder=hg19_bwa-mapping/
+infolder=hg19_bwa-mapping
 infile=shuffled_PE_NA18507_GAIIx_100_chr21_mem_mdup.bam
 
 outfolder=varscan2_variants
 mkdir -p ${outfolder}
- 
+
 ref=ref/HiSeq_UCSC_hg19.fa
- 
+
 # call SNV and InDels variants from samtools mpileup
 
 ## call both in one GO
@@ -55,18 +55,18 @@ samtools mpileup -f ${ref} ${infolder}/${infile} | \
 bgzip -c ${outfolder}/NA18507_mpileup2cns.vcf \
 	> ${outfolder}/NA18507_mpileup2cns.vcf.gz &&
 	tabix -p vcf ${outfolder}/NA18507_mpileup2cns.vcf.gz
- 
+
 # extract the chr21 subset of calls
 vcftools --gzvcf ${outfolder}/NA18507_mpileup2cns.vcf.gz \
 	--chr chr21 \
 	--out ${outfolder}/chr21_NA18507_varscan \
 	--recode
- 
+
 # recoding introduces the word recode at the end of the file-name
 # remove the recode tag from the name
 mv ${outfolder}/chr21_NA18507_varscan.recode.vcf \
 	${outfolder}/chr21_NA18507_varscan.vcf
- 
+
 # sort, compress and index using our custom 'vcf2index' function)
 vcf2index ${outfolder}/chr21_NA18507_varscan.vcf && \
 	rm ${outfolder}/chr21_NA18507_varscan.vcf
