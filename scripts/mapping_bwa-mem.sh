@@ -107,7 +107,8 @@ java -jar $PICARD/picard.jar SortSam \
 
 ##### get basic stats from the resulting bam file
 samtools flagstat ${outfolder}/${bwape}.bam \
-	>${outfolder}/${bwape}_flagstat.txt
+	>${outfolder}/${bwape}_flagstat.txt && \
+	cat ${outfolder}/${bwape}_flagstat.txt
 
 echo "# finished mapping ${f} reads with BWA mem"
 
