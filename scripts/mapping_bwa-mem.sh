@@ -26,11 +26,11 @@ pfx=sample
 outfolder=hg19_bwa-mapping
 mkdir -p ${outfolder}
 
-# common
+# reads
 fq1=${infolder}/${f}_2_1.fq.gz
-echo "# mapping forward reads from: ${fq1}"
+echo "# forward reads: ${fq1}"
 fq2=${infolder}/${f}_2_2.fq.gz
-echo "# mapping reverse reads from: ${fq2}"
+echo "# reverse reads: ${fq2}"
 
 # marking secondary hits with -M to comply with Picard
 # using 'nthr' processors in parallel (again limited by our RAM!)
