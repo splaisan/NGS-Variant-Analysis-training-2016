@@ -43,7 +43,7 @@ ref=ref/HiSeq_UCSC_hg19.fa
 # call SNV and InDels variants from samtools mpileup
 
 ## call both in one GO
-maxmem="24G"
+maxmem="4G"
 
 samtools mpileup -f ${ref} ${infolder}/${infile} | \
 	java -Xmx${maxmem} -jar $VARSCAN/VarScan.v2.4.1.jar mpileup2cns \
