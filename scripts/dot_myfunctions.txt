@@ -1,0 +1,190 @@
+##############################################
+## custom bash functions for the BITS training
+########################## SP:BITS 2013 ######
+
+function listfunc {
+# list only my custom functions and ignore system functions
+declare -F | grep -v 'declare -f _'
+}
+
+function vcf2index {
+# takes a vcf file as argument ($1)
+# keeps header and sorts remaining lines
+# compresses sorted file with bgzip
+# indexes it with tabix for vcftools applications
+# author: Stephane Plaisance
+# version: 1.0
+if [ $# -eq 1 ]
+then
+title=$(basename "$1" ".vcf")
+( grep ^"#" $1 | perl -pi -e "s/$title.*$/$title/";
+grep -v ^"#" $1 | sort -k 1V,1 -k 2n,2 ) | bgzip -c > $1".gz"
+tabix -p vcf $1".gz"
+else
+echo "usage: $0 <vcf-file>"
+fi
+}
+
+function sortmybed {
+# take STDIN or file as input
+# sort BED file by chromosome
+# then by start
+# last by end
+# author: Stephane Plaisance
+# version: 1.0
+if [ "$#" -lt 1 ]
+then
+cat | sort -k 1V,1 -k 2n,2 -k 3n,3
+else
+sort -k 1V,1 -k 2n,2 -k 3n,3 $1
+fi
+}
+
+function awky {
+# print a awk empty command
+# author: Stephane Plaisance
+# version: 1.0
+echo "gawk 'BEGIN{FS=\"\\t\"; OFS=\"\\t\"}{}'"
+}
+
+function bed2index {
+# take bed files
+# keep header comment lines
+# sort remaining lines and compress sorted file with bgzip
+# index tabix for compatible applications (eg. PipelineGUI)
+# author: Stephane Plaisance
+# version: 1.0
+for f in $*;
+do
+   echo;
+   echo -n ". sorting: "$f
+   grep ^"#" $f > tmp;
+   grep ^"chr[0-9MXY]*" $f | sort -k 1V,1 -k 2n,2 -k 3n,3 >> tmp;
+   echo -n " .. bgzip compressing "
+   bgzip -c tmp > $f".gz" && rm tmp;
+   echo -n " ... indexing.";
+   tabix -p bed $f".gz";
+   echo "done!"
+   echo "testing chr4:10000-20000"
+   tabix $f.gz chr4:10000-20000
+done
+}
+
+function bashtips () {
+cat <<HEREDOC
+# DIRECTORIES
+# -----------
+# ~-      Previous working directory
+# pushd tmp   Push tmp && cd tmp
+# popd            Pop && cd
+# 
+# GLOBBING AND OUTPUT SUBSTITUTION
+# --------------------------------
+# ls a[b-dx]e Globs abe, ace, ade, axe
+# ls a{c,bl}e Globs ace, able
+# \$(ls)          \`ls\` (but nestable!)
+# 
+# HISTORY MANIPULATION
+# --------------------
+# !!      Last command
+# !?foo           Last command containing \`foo’
+# ^foo^bar^   Last command containing \`foo’, but substitute \`bar’
+# !!:0            Last command word
+# !!:^            Last command’s first argument
+# !\$     Last command’s last argument
+# !!:*            Last command’s arguments
+# !!:x-y          Arguments x to y of last command
+# C-s     search forwards in history
+# C-r     search backwards in history
+# 
+# LINE EDITING
+# ------------
+# M-d     kill to end of word
+# C-w     kill to beginning of word
+# C-k     kill to end of line
+# C-u     kill to beginning of line
+# M-r     revert all modifications to current line
+# C-]     search forwards in line
+# M-C-]           search backwards in line
+# C-t     transpose characters
+# M-t     transpose words
+# M-u     uppercase word
+# M-l     lowercase word
+# M-c     capitalize word
+# 
+# COMPLETION
+# ----------
+# M-/     complete filename
+# M-~     complete user name
+# M-@     complete host name
+# M-\$            complete variable name
+# M-!     complete command name
+# M-^     complete history
+HEREDOC
+}
+
+function dedup {
+# take list from STDIN (cat somefile | dedup)
+# remove duplicates while preserving input order
+awk '! x[$0]++' $@
+}
+
+function addchr {
+# adds 'chr' in front of lines staring with any of [0-9XYM]
+# leaves any other line unchanged
+# should work with most BED and VCF files
+# accepts both piped data and file as input
+if [ "$#" -lt 1 ]
+then
+cat | gawk 'BEGIN{FS="\t"; OFS="\t"}
+	{if ($1~/^[0-9XYM]/)
+		{gsub($1,"chr"$1,$1); 
+		print $0
+		} else print $0
+	}'
+else gawk 'BEGIN{FS="\t"; OFS="\t"}
+	{if ($1~/^[0-9XYM]/)
+		{gsub($1,"chr"$1,$1); 
+		print $0
+		} else print $0
+	}' $1
+fi
+}
+
+function remchr {
+# removes 'chr' in front of lines staring with 'chr'
+# leaves any other line unchanged
+# should work with most BED and VCF files
+# accepts both piped data and file as input
+if [ "$#" -lt 1 ]
+then
+cat | gawk 'BEGIN{FS="\t"; OFS="\t"}
+	{if ($1~/^chr/){
+		gsub("chr","",$1); 
+		print $0
+		} else print $0
+	}'
+else
+gawk 'BEGIN{FS="\t"; OFS="\t"}
+	{if ($1~/^chr/){
+		gsub("chr","",$1); 
+		print $0
+		} else print $0
+	}' $1
+fi
+}
+
+function pdf2png {
+# convert PDF to PNG (all pages with suffix)
+# take PDF file from 1
+# use PDF file name for PNG with extension swap
+# or take PNG file name from $2
+if [ $# -ge 1 ]
+then
+convert -density 300 -depth 8 -quality 100 -resize 25% ${1} ${2:-${1%%.pdf}.png};
+else
+echo "usage: pdf2png <input.pdf> <opt:output.png>"
+fi
+}
+
+######### end .myfunctions

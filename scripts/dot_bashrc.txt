@@ -1,0 +1,31 @@
+# aliases for the variant training
+alias ll='ls -lah'
+alias cls='clear'
+
+# ENV varsiable for the variant training
+export BASE=$HOME/NGS/Variant
+export REF=$HOME/NGS/Variant/ref
+export PICARD=/usr/bin/tools/picard-tools-2.2.4
+export VARSCAN=/usr/bin/tools/varscan
+export SNPEFF=/usr/bin/tools/snpEff
+export SNPEFFDB=$SNPEFF/data
+export IGV=/usr/bin/tools/IGV
+export IGVTOOLS=/usr/bin/tools/IGVTools
+
+# in order to add extra man pages
+MANPATH=$MANPATH:/usr/local/bin/share/man
+export MANPATH
+
+# my solution to get samtools, bcftools AND associated scripts
+# comment when doing training with older versions
+PATH=/usr/bin/tools/samtools-1.3.1:$PATH
+PATH=/usr/bin/tools/samtools-1.3.1/misc:$PATH
+PATH=/usr/bin/tools/bcftools-1.3.1:$PATH
+export PATH
+
+# in order to add extra perl LIBs 
+PERL5LIB=/usr/bin/tools/vcftools-0.1.14/src/perl:$PERL5LIB
+export PERL5LIB
+
+# source .myfunctions
+source $HOME/.myfunctions
