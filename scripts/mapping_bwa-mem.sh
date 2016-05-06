@@ -18,8 +18,8 @@ infolder=reads
 # f=shuffled_NA18507_GAIIx_100_chr21
 # pfx=all
 
-## 10% sample
-f=shuffled_10pc_PE_NA18507_GAIIx_100_chr21
+## 1% sample
+f=shuffled_1pc_PE_NA18507_GAIIx_100_chr21
 pfx=sample
 
 # create new folder
