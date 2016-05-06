@@ -7,10 +7,10 @@
 # vcftools 0.1.14
 # vcf2index custom function
 
-# if not done yet, source user-defined functions (including vcf2index)
-# . /home/bits/.myfunctions
-
-function vcf2index() {
+# if not done yet, source user-defined .myfunctions (including vcf2index)
+# . $HOME/.myfunctions
+# vcf2index is reproduced here for training
+vcf2index {
 # takes a vcf file as argument ($1)
 # keeps header and sorts remaining lines
 # compresses sorted file with bgzip

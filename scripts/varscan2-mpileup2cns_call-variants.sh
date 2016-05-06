@@ -10,10 +10,10 @@
 # make sure you have defined VARSCAN in your .bashrc
 # export VARSCAN=<edit here the path to VarScan.v2.4.1.jar>
 
-# if not done yet, source user-defined functions (including vcf2index)
-# . /home/bits/.myfunctions
-
-function vcf2index() {
+# if not done yet, source user-defined .myfunctions (including vcf2index)
+# . $HOME/.myfunctions
+# vcf2index is reproduced here for training
+vcf2index {
 # takes a vcf file as argument ($1)
 # keeps header and sorts remaining lines
 # compresses sorted file with bgzip
@@ -42,7 +42,7 @@ ref=ref/HiSeq_UCSC_hg19.fa
 
 # call SNV and InDels variants from samtools mpileup
 
-## call both in one GO
+## limit allocated RAM
 maxmem="4G"
 
 samtools mpileup -f ${ref} ${infolder}/${infile} | \
