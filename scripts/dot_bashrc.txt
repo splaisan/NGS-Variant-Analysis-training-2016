@@ -2,7 +2,7 @@
 alias ll='ls -lah'
 alias cls='clear'
 
-# ENV varsiable for the variant training
+# ENV variable for the variant training (this is specific for the BITS laptops!)
 export BASE=$HOME/NGS/Variant
 export REF=$HOME/NGS/Variant/ref
 export PICARD=/usr/bin/tools/picard-tools-2.2.4
