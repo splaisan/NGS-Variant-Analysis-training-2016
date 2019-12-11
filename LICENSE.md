@@ -1,4 +1,4 @@
-<a href="https://www.bits.vib.be" target="_blank"><img src="https://www.bits.vib.be/templates/protostar-material/bioinformatics_core_rgb_neg.png"> </a>
+<a href="https://www.bits.vib.be" target="_blank"><img src="https://www.bits.vib.be/templates/protostar-material/bioinformatics_core_rgb_neg.png" width=300px> </a>
 
 This work is owned by **<a href="https://www.bits.vib.be" target="_blank">BITS</a>**, the bioinformatics facility of the **<a href="http://www.vib.be" target="_blank">VIB</a>**
 
